@@ -1,11 +1,21 @@
 #include <iostream>
-#include <string>
+
 using namespace std;
 int main() {
 	
-	string tt;
+
+	char tt[40];
 	cin >> tt;
-	for (int i = 0; i < tt.size(); i++) {
+	int ww = 0;
+	for (int i = 0; i < 40; i++) {
+		if (tt[i] == '\0') {
+			break;
+		}
+		else {
+			ww++;
+		}
+	}
+	for (int i = 0; i < ww; i++) {
 		bool rr = isupper(tt[i]);
 		if (i % 2 == 0) {
 			if (rr == 1) {
@@ -30,6 +40,7 @@ int main() {
 		}
 	}
 	cout << tt << endl;
+
 
 	return 0;
 }

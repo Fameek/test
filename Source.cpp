@@ -1,24 +1,55 @@
 #include <iostream>
 #include <string>
 using namespace std;
-string striling(string a, string b, int n) {
-	for (int i = 0; i < n; i++) {
-		if (b[i] == '\0') {
+int eerwer(char a[80], char b[80], int eee) {
+	while (1) {
+		if (eee == 80) {
 			break;
 		}
 		else {
-			a.push_back(b[i]);
+			if (a[eee] == b[0]) {
+				int rrr = 0;
+				while (1) {
+					if (b[rrr] == '\0') {
+						return eee;		
+					}
+					if (a[eee + rrr] == b[rrr]) {
+						rrr++;
+					}
+					else if (a[eee + rrr] != b[rrr]) {
+						break;
+					}
+				}
+			}
+			eee++;
 		}
 	}
-	a.push_back('\0');
-	return a;
+	if (eee == 80) {
+		return 999;
+	}
+	else {
+		return eee;
+	}
 }
 
+
 int main() {
-	
-	string a;
-	string b;	
-	cin >> a;
-	cin >> b;	
-	cout << striling(a, b, 4);
+	char a[80];
+	cin.getline(a,80);
+	char b[80];
+	cin.getline(b,80);
+	int eee = 0;
+	while (1) {
+		eee = eerwer(a, b , eee);
+		if (eee == 999) {
+			break;
+		}
+		else {
+			cout << eee << " ";
+			eee++;
+
+		}
+	}
+
+
 }

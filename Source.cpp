@@ -1,45 +1,24 @@
 #include <iostream>
+#include <string>
 using namespace std;
-void striling(char a[80], char b[80] ,int n) {
-	char c[160];
-	int ww = 0;
-	for (int i = 0; i < 80; i++) {
-		if (a[i] == '\0') {
-			
-			break;
-		}
-		else{
-			c[i] = a[i];
-			ww++;
-		}
-
-	}
+string striling(string a, string b, int n) {
 	for (int i = 0; i < n; i++) {
 		if (b[i] == '\0') {
-			c[ww + i] = '\0';
 			break;
 		}
-		c[ww + i] = b[i];
-		if (i == n-1) {
-			c[ww + i + 1] = '\0';
-
+		else {
+			a.push_back(b[i]);
 		}
-
 	}
-
-	cout << c;
+	a.push_back('\0');
+	return a;
 }
 
-
 int main() {
-	int n;
-	char a[80];
-	char b[80];
-	cin >> n;
+	
+	string a;
+	string b;	
 	cin >> a;
-	cin >> b;
-
-	char c[160]; 
-	striling(a, b, n);
-
+	cin >> b;	
+	cout << striling(a, b, 4);
 }

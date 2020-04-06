@@ -1,55 +1,44 @@
 #include <iostream>
-#include <string>
+
 using namespace std;
-int eerwer(char a[80], char b[80], int eee) {
-	while (1) {
-		if (eee == 80) {
-			break;
-		}
-		else {
-			if (a[eee] == b[0]) {
-				int rrr = 0;
-				while (1) {
-					if (b[rrr] == '\0') {
-						return eee;		
-					}
-					if (a[eee + rrr] == b[rrr]) {
-						rrr++;
-					}
-					else if (a[eee + rrr] != b[rrr]) {
-						break;
-					}
-				}
-			}
-			eee++;
-		}
-	}
-	if (eee == 80) {
-		return 999;
-	}
-	else {
-		return eee;
-	}
-}
+
 
 
 int main() {
 	char a[80];
 	cin.getline(a,80);
 	char b[80];
-	cin.getline(b,80);
 	int eee = 0;
+	int min = 0;
+	int tt = 0;
 	while (1) {
-		eee = eerwer(a, b , eee);
-		if (eee == 999) {
+		if (a[eee] == '\0') {
 			break;
 		}
-		else {
-			cout << eee << " ";
-			eee++;
+		if (a[eee] != ' ') {
+			tt++;
+			if (a[eee + 1] == '\0' || a[eee + 1] == ' ') {
+				if (min == 0 || min > tt) {
+					min = tt;
 
+					for (int i = 0; i < min; i++) {
+						b[i] = a[eee - min + i + 1];
+					}
+					b[min] = '\0';
+				}
+				
+					tt = 0;
+				
+			}
+			
 		}
+
+		eee++;
 	}
-
-
+	if (min == 0) {
+		cout << "ERROR" << endl;
+	}
+	else {
+		cout << b << endl;
+	}
 }

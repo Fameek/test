@@ -1,66 +1,40 @@
-﻿#include <iostream>
-#include <clocale>
-#include <cctype>
-#include<cstring>
-#include <Windows.h>
-#include <vector>
+﻿
+#include <iostream>
 using namespace std;
-char* strn_cat(char* a, char* b, int r)
-{
-	int a_size = 0; 
-	for (int i = 0;  ; i++) {
-		if (a[i] == '\0') {
+int main() {
+	char a[80];
+	cin.getline(a, 80);
+	char b[80];
+	int eee = 0;
+	int min = 0;
+	int tt = 0;
+	while (1) {
+		if (a[eee] == '\0') {
 			break;
 		}
-		a_size++;
-	}
-	int b_size = 0;
-	for (int i = 0; ; i++) {
-		if (b[i] == '\0') {
-			break;
+		if (a[eee] != ' ' && a[eee] != '.' && a[eee] != ',' && a[eee] != '!' && a[eee] != '?' && a[eee] != ';' && a[eee] != ':') {
+			tt++;
+			if (a[eee + 1] == '\0' || a[eee + 1] == ' ' || a[eee + 1] == '.' || a[eee + 1] == ',' || a[eee + 1] == '!' || a[eee + 1] == '?' || a[eee + 1] == ';' || a[eee + 1] == ':') {
+				if (min == 0 || min > tt) {
+					min = tt;
+
+					for (int i = 0; i < min; i++) {
+						b[i] = a[eee - min + i + 1];
+					}
+					b[min] = '\0';
+				}
+
+				tt = 0;
+
+			}
+
 		}
-		b_size++;
+		eee++;
 	}
-	if (b_size < r) {
-		for (int i = 0; i < b_size; i++) {
-			a[a_size + i] = b[i];
-		}
-		a[a_size + b_size] = '\0';
+	if (min == 0) {
+		cout << "ERROR" << endl;
 	}
 	else {
-		for (int i = 0; i < r; i++) {
-			a[a_size + i] = b[i];
-		}
-		a[a_size + r] = '\0';
-
+		cout << b << endl;
 	}
-	
-	return a;
-}
-int main()
-{
-	setlocale(LC_CTYPE, "rus");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-
-	cout << "Введите строку 1:\n ";
-	char a[10000];
-	cin.getline(a, 10000);
-	cout << "Введите строку 2:\n ";
-	char b[10000];
-	cin.getline(b, 10000);
-	int r = 0;
-	cout << "Введи количество символом которые будт перенесы в конец строки 2 \n: ";
-	cin >> r;
-	strn_cat(a, b, r);
-	cout << a;
-	
-
-	
-
-
-
-
-
-	
 }
